@@ -19,6 +19,20 @@ public class EquationTests {
     Equation e = new Equation(1, 2, 1);
     Assert.assertEquals(e.rootNumber(),1);
   }
+  public void testLinear() {
+    Equation e = new Equation(0, 2, -1);
+    Assert.assertEquals(e.rootNumber(),1);
+  }
+
+  public void testConstant() {
+    Equation e = new Equation(0, 0, 1);
+    Assert.assertEquals(e.rootNumber(),0);
+  }
+
+  public void testZero() {
+    Equation e = new Equation(0, 0, 0);
+    Assert.assertEquals(e.rootNumber(),-1);
+  }
 }
 
 
