@@ -32,6 +32,15 @@ public class HelperBase {
 
   }
 
+  public boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (org.openqa.selenium.NoSuchElementException ex) {
+      return false;
+    }
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
@@ -41,12 +50,5 @@ public class HelperBase {
     }
   }
 
-  protected boolean isElementPresent(By locator) {
-    try {
-      wd.findElement(locator);
-      return true;
-    } catch (NoSuchElementException ex){
-      return false;
-    }
-  }
+
 }
