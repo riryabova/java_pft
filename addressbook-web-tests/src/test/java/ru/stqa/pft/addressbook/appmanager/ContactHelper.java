@@ -39,6 +39,9 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public void initContactCreation() {
+    click((By.linkText("add new")));
+  }
 
   public void deleteSelectedContacts() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -58,7 +61,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact, boolean creation) {
-    click((By.linkText("add new")));
+    initContactCreation();
     fillContactForm(contact, creation);
     submitContactCreation();
     returnToHomePage();
