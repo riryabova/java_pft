@@ -11,10 +11,12 @@ public class ContactModificationTests extends TestBase {
 
     app.getNavigationHelper().goToHomePage();
     int before = app.getContactHelper().getContactCount();
+    if (before == 0) //иначе тест упадет, т.к. при отсутствии элемента для модификации/удаления мы его создаем
+      before ++;
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("test12", "test13", "test14", "8888888", "mailTo@gmail.com", "test11"), true);
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before-1);
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("new test12", "new test13", "new test14", "1 8888888", "new_mailTo@gmail.com", null), false);
     app.getContactHelper().submitContactModification();

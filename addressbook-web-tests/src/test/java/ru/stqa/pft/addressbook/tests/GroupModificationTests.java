@@ -10,10 +10,12 @@ public class GroupModificationTests extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     int before = app.getGroupHelper().getGroupCount();
+    if (before == 0) //иначе тест упадет, т.к. при отсутствии элемента для модификации/удаления мы его создаем
+      before ++;
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test11", null, "test13"));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(before-1);
     app.getGroupHelper().initGroupModification();
     app.getGroupHelper().fillGroupForm(new GroupData("new test1", "new test2", "new test3"));
     app.getGroupHelper().submitGroupModification();
