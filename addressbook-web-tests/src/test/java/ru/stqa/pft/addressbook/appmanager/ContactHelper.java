@@ -88,7 +88,7 @@ public class ContactHelper extends HelperBase {
       String lastName = elements.get(i + 1).getText();
       ContactData contact = new ContactData(firstName, lastName, null, null, null, null);
       contacts.add(contact);
-      i = i + 10;
+//      i = i + 10;
     }
     return contacts;
   }
