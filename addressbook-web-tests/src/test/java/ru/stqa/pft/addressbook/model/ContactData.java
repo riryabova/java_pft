@@ -6,26 +6,26 @@ public class ContactData {
   private  int id;
   private final String firstName;
   private final String lastName;
-  private final String address;
-  private final String mobilePhone;
-  private final String email;
-  private String group;
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstName, that.firstName) &&
+    return Objects.equals(firstName, that.firstName) &&
             Objects.equals(lastName, that.lastName);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(id, firstName, lastName);
+    return Objects.hash(firstName, lastName);
   }
+
+  private final String address;
+  private final String mobilePhone;
+  private final String email;
+  private String group;
 
   public ContactData(int id, String firstName, String lastName, String address, String mobilePhone, String email, String group) {
     this.id = id;
