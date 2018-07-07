@@ -21,12 +21,14 @@ public class ContactModificationTests extends TestBase {
       app.getContactHelper().createContact(new ContactData("test12", "test13", "test14", "8888888", "mailTo@gmail.com", "test11"), true);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
+
     app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().initContactModification();
-    ContactData contact = new ContactData(before.get(before.size()-1).getId(),"new test12", "new test13", "new test14","1 8888888", "new_mailTo@gmail.com", null);
+    app.getContactHelper().initContactModification(before.size() - 1);
+    ContactData contact = new ContactData(before.get(before.size()-1).getId(),"test12", "test13", "test14","1 8888888", "new_mailTo@gmail.com", null);
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().goToHomePage();
+
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
