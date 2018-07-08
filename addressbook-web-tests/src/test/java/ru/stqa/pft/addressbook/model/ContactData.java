@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
+  private int id = 0;
   private String firstName;
   private String lastName;
   private String address;
@@ -11,29 +11,62 @@ public class ContactData {
   private String email;
   private String group;
 
-  public ContactData(int id, String firstName, String lastName, String address, String mobilePhone, String email, String group) {
+
+//  public ContactData(int id, String firstName, String lastName, String address, String mobilePhone, String email, String group) {
+//    this.id = id;
+//    this.firstName = firstName;
+//    this.lastName = lastName;
+//    this.address = address;
+//    this.mobilePhone = mobilePhone;
+//    this.email = email;
+//    this.group = group;
+//  }
+//
+//
+//  public ContactData(String firstName, String lastName, String address, String mobilePhone, String email, String group) {
+//    this.id = 0;
+//    this.firstName = firstName;
+//    this.lastName = lastName;
+//    this.address = address;
+//    this.mobilePhone = mobilePhone;
+//    this.email = email;
+//    this.group = group;
+//  }
+
+  public ContactData withId(int id) {
+
     this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.mobilePhone = mobilePhone;
-    this.email = email;
-    this.group = group;
+    return this;
   }
 
-
-  public ContactData(String firstName, String lastName, String address, String mobilePhone, String email, String group) {
-    this.id = 0;
+  public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.mobilePhone = mobilePhone;
-    this.email = email;
-    this.group = group;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public int getId() {
