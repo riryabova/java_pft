@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class ContactHelper extends HelperBase {
 
     super(wd);
   }
+
 
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
@@ -111,10 +113,9 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
-  //Возвращаем множество
-  public Set<ContactData> all_contact() {
+    public Contacts all_contact() {
 
-    Set<ContactData> contacts = new HashSet<ContactData>();
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) { //сами строки контатов
       List<WebElement> cells = element.findElements(By.tagName("td")); //ячейки
