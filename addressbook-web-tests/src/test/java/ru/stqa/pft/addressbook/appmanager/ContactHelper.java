@@ -55,6 +55,7 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectedContacts(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContacts();
+    contactCache = null;
   }
 
   public void selectContact(int index) {
@@ -62,12 +63,12 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void initContactModification(int id) {
 //    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    wd.findElement(By.xpath("//input[@value='"+id+"']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
+    wd.findElement(By.xpath("//input[@value='" + id + "']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
   }
 
   public void submitContactModification() {
@@ -78,16 +79,18 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactForm(contact, creation);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
   public void modify(ContactData contact) {
     selectContactById(contact.getId());
     initContactModification(contact.getId());
-   fillContactForm(contact, false);
-    submitContactModification();
-  }
+    fillContactForm(contact, false);
 
+    submitContactModification();
+    contactCache = null;
+  }
 
 
   public boolean isThereAContact() {
@@ -113,9 +116,15 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
-    public Contacts all_contact() {
+  private Contacts contactCache = null;
 
-    Contacts contacts = new Contacts();
+  public Contacts all_contact() {
+    if (contactCache != null) {
+
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) { //сами строки контатов
       List<WebElement> cells = element.findElements(By.tagName("td")); //ячейки
@@ -123,9 +132,9 @@ public class ContactHelper extends HelperBase {
 //      int id = Integer.parseInt(cells.get(0).getAttribute("value"));
       String lastName = cells.get(1).getText();
       String firstName = cells.get(2).getText();
-      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
     }
-    return contacts;
+    return contactCache;
   }
 
 
