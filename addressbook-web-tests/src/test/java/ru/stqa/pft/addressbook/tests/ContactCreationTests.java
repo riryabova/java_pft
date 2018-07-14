@@ -18,8 +18,9 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData()
             .withFirstName("new test12").withLastName("new test13").withAddress("new test14").withMobilePhone("1 8888888").withEmail("new_mailTo@gmail.com").withGroup("test11");
     app.getContactHelper().create(contact, true);
+    Assert.assertEquals(app.getContactHelper().count(), before.size() + 1);
     Contacts after = app.getContactHelper().all_contact();
-    Assert.assertEquals(after.size(), before.size() + 1);
+
 
 //    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     assertThat(
