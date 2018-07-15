@@ -3,12 +3,11 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
+
 
 import java.util.*;
 
@@ -133,10 +132,13 @@ public class ContactHelper extends HelperBase {
       String lastName = cells.get(1).getText();
       String firstName = cells.get(2).getText();
 //      String[] phones = cells.get(5).getText().split("\n");
+      String allEmails = cells.get(4).getText();
+      String allAddress = cells.get(3).getText();
       String allPhones = cells.get(5).getText();
 
+
       contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-              .withAllPhones(allPhones));
+              .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(allAddress));
     }
     return contactCache;
 
