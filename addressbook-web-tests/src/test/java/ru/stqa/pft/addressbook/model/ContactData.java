@@ -151,6 +151,10 @@ public class ContactData {
     return workPhone;
   }
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
   public String getEmail() {
     return email;
   }
@@ -161,6 +165,10 @@ public class ContactData {
 
   public String getEmail3() {
     return email3;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public String getGroup() {
