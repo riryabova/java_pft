@@ -1,6 +1,5 @@
 <list>
   <group>
-    <id>0</id>
     <firstName>firstName 0</firstName>
     <lastName>lastName 0</lastName>
     <address>address 0</address>
@@ -8,7 +7,6 @@
     <email>email 0</email>
   </group>
   <group>
-    <id>0</id>
     <firstName>firstName 1</firstName>
     <lastName>lastName 1</lastName>
     <address>address 1</address>
@@ -16,7 +14,6 @@
     <email>email 1</email>
   </group>
   <group>
-    <id>0</id>
     <firstName>firstName 2</firstName>
     <lastName>lastName 2</lastName>
     <address>address 2</address>
