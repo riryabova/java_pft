@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 
 import java.util.*;
@@ -27,20 +28,29 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+//  public void fillContactForm(ContactData contactData, boolean creation) {
+//    type(By.name("firstname"), contactData.getFirstName());
+//    type(By.name("lastname"), contactData.getLastName());
+//    type(By.name("address"), contactData.getAddress());
+//    type(By.name("mobile"), contactData.getMobilePhone());
+//    type(By.name("email"), contactData.getEmail());
+//   attach(By.name("photo"), contactData.getPhoto());
+//
+//    if (creation) {
+//
+//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//    } else {
+//      Assert.assertFalse(isElementPresent(By.name("new_group")));
+//    }
+//  }
+
+  public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("address"), contactData.getAddress());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("email"), contactData.getEmail());
-   attach(By.name("photo"), contactData.getPhoto());
-
-    if (creation) {
-
-//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+//    attach(By.name("photo"), contactData.getPhoto());
   }
 
   public void initContactCreation() {
@@ -56,6 +66,15 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     deleteSelectedContacts();
     contactCache = null;
+  }
+
+  public void addToGroup(ContactData contact, String newGroupName) {
+//    selectGroupByName(group.getName());
+    selectContactById(contact.getId());
+    Select nGroup = new Select(wd.findElement(By.name("to_group")));
+    nGroup.selectByVisibleText(newGroupName);
+    wd.findElement(By.name("add")).click();
+//    contactCache = null;
   }
 
   public void selectContact(int index) {
@@ -75,9 +94,17 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
-  public void create(ContactData contact, boolean creation) {
+//  public void create(ContactData contact, boolean creation) {
+//    initContactCreation();
+//    fillContactForm(contact, creation);
+//    submitContactCreation();
+//    contactCache = null;
+//    returnToHomePage();
+//  }
+
+  public void create(ContactData contact) {
     initContactCreation();
-    fillContactForm(contact, creation);
+    fillContactForm(contact);
     submitContactCreation();
     contactCache = null;
     returnToHomePage();
@@ -86,11 +113,13 @@ public class ContactHelper extends HelperBase {
   public void modify(ContactData contact) {
     selectContactById(contact.getId());
     initContactModification(contact.getId());
-    fillContactForm(contact, false);
+    fillContactForm(contact);
 
     submitContactModification();
     contactCache = null;
   }
+
+
 
 
   public boolean isThereAContact() {

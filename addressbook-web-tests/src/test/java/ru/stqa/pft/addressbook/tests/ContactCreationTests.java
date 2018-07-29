@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,13 +42,14 @@ public class ContactCreationTests extends TestBase {
 
   @Test (dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) {
+    Groups groups = app.db().groups();
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    File photo = new File("src/test/resources/pic.png");
+//    File photo = new File("src/test/resources/pic.png");
 //    ContactData contact = new ContactData()
 //            .withFirstName("new test12").withLastName("new test13").withAddress("newtest14").withMobilePhone("1 8888888").withEmail("new_mailTo@gmail.com").withGroup("test11").withPhoto(photo);
-    app.contact().create(contact, true);
-
+//    app.contact().create(contact, true);
+    app.contact().create(contact);
     Assert.assertEquals(app.contact().count(), before.size() + 1);
     Contacts after = app.db().contacts();
 

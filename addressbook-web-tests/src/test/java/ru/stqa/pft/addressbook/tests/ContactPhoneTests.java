@@ -16,7 +16,7 @@ public class ContactPhoneTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("test12").withLastName("test13").withAddress("test14").withMobilePhone("8888888").withEmail("mailTo@gmail.com").withGroup("test11"), true);
+      app.contact().create(new ContactData().withFirstName("test12").withLastName("test13").withAddress("test14").withMobilePhone("8888888").withEmail("mailTo@gmail.com"));
     }
   }
 
@@ -29,7 +29,7 @@ public class ContactPhoneTests extends TestBase {
     assertThat(contact.getAllPhones(),equalTo(mergePhones(contactInfoFromEditForm)));
   }
 
-  @Test
+  @Test (enabled = false)
   public void testContactEmails() {
     app.goTo().homePage();
     ContactData contact = app.contact().all_contact().iterator().next();
@@ -38,7 +38,7 @@ public class ContactPhoneTests extends TestBase {
     assertThat(contact.getAllEmails(),equalTo(mergeEmails(contactInfoFromEditForm)));
   }
 
-  @Test
+  @Test(enabled = false)
   public void testContactAddress() {
     app.goTo().homePage();
     ContactData contact = app.contact().all_contact().iterator().next();
