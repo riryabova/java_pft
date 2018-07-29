@@ -88,17 +88,7 @@ public class ContactData {
 //    this.group = group;
 //  }
 //
-//
-//  public ContactData(String firstName, String lastName, String address, String mobilePhone, String email, String group) {
-//    this.id = 0;
-//    this.firstName = firstName;
-//    this.lastName = lastName;
-//    this.address = address;
-//    this.mobilePhone = mobilePhone;
-//    this.email = email;
-//    this.group = group;
 
-  //  }
 
   public ContactData withId(int id) {
 
