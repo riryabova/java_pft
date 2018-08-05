@@ -16,11 +16,12 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
   private final Properties properties;
   //  protected final ApplicationManager app = new ApplicationManager();
-  private WebDriver wd;
+   WebDriver wd;
 
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
+  private MailHelper mailHelper;
 
   public ApplicationManager(String browser) {
 
@@ -41,6 +42,7 @@ public class ApplicationManager {
   }
 
   public HttpSession newSession(){
+
     return new HttpSession(this);
   }
 
@@ -79,4 +81,10 @@ public class ApplicationManager {
   return wd;
   }
 
+  public MailHelper mail() {
+    if (mailHelper == null) {
+      mailHelper = new MailHelper(this);
+    }
+    return mailHelper;
+  }
 }
