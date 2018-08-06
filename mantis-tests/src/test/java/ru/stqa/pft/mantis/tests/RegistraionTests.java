@@ -17,7 +17,7 @@ public class RegistraionTests extends TestBase {
 
 
   @BeforeMethod
-  public void startMailServer(){
+  public void startMailServer() {
     app.mail().start();
   }
 
@@ -28,11 +28,9 @@ public class RegistraionTests extends TestBase {
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);
 //app.james().createUser(user, password);
-
     app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
 //    List<MailMessage> mailMessages=app.james().waitForMail(user, password,60000);
-
     String confrimationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confrimationLink, password);
     assertTrue(app.newSession().login(user, password));
@@ -47,7 +45,7 @@ public class RegistraionTests extends TestBase {
 
 
   @AfterMethod(alwaysRun = true)
-  public void stopMailServer(){
+  public void stopMailServer() {
 
     app.mail().stop();
   }

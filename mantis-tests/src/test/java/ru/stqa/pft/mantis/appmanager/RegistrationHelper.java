@@ -24,4 +24,6 @@ public class RegistrationHelper extends HelperBase{
     type(By.name("password_confirm"), password);
     click(By.xpath("//*[contains(text(), 'Изменить учетную запись')]"));
   }
+
+
 }

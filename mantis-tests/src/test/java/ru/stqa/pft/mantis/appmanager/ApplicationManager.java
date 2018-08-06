@@ -20,6 +20,7 @@ public class ApplicationManager {
 
   private String browser;
   private RegistrationHelper registrationHelper;
+  private ChangePasswordHelper changePasswordHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
@@ -51,12 +52,20 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
+
   public RegistrationHelper registration() {
    
     if (registrationHelper == null) {
       registrationHelper = new RegistrationHelper(this);
     }
     return registrationHelper;
+  }
+
+  public ChangePasswordHelper changePasswordHelper() {
+    if (changePasswordHelper == null) {
+      changePasswordHelper = new ChangePasswordHelper(this);
+    }
+    return changePasswordHelper;
   }
 
   public FtpHelper ftp() {
@@ -95,4 +104,6 @@ public class ApplicationManager {
     }
     return jamesHelper;
   }
+
+
 }

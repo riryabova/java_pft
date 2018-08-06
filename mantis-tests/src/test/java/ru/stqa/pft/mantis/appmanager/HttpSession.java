@@ -44,8 +44,11 @@ public class HttpSession {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
     CloseableHttpResponse response = httpclient.execute(get);
     String body = geTextFrom(response);
+String a= String.format("<span class=\"user-info\">%s</span>", username);
+boolean b = body.contains(a);
+    return b;
+//    return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
 
-    return body.contains(String.format("<span class=\"user-info\">administrator</span>", username));
   }
 
   private String geTextFrom(CloseableHttpResponse response) throws IOException {
