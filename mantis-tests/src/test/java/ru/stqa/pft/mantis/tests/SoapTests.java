@@ -11,20 +11,22 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class SoapTests extends TestBase{
+public class SoapTests extends TestBase {
 
   @Test
   public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
-//    skipIfNotFixed(0000001);
+
     Set<Project> projects = app.soap().getProjects();
     System.out.println(projects.size());
-    for (Project project : projects){
+    for (Project project : projects) {
       System.out.println(project.getName());
     }
   }
 
   @Test
   public void testCreateIssue() throws RemoteException, ServiceException, MalformedURLException {
+//    skipIfNotFixed(0000001); //Закрытая задача с ней  тест проходит
+    skipIfNotFixed(0000002); //Новая задча с ней тест игнорится
     Set<Project> projects = app.soap().getProjects();
 
     Issue issue = new Issue().withSummary("Test issue")
