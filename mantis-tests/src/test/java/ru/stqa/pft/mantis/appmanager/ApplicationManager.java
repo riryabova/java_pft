@@ -24,6 +24,7 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
 
@@ -105,5 +106,10 @@ public class ApplicationManager {
     return jamesHelper;
   }
 
-
+public SoapHelper soap() {
+    if (soapHelper == null){
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 }
