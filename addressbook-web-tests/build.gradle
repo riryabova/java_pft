@@ -32,9 +32,6 @@ task testGroups(type: Test) {
     }
 }
 
-test {
-    useTestNG()
-}
 
 task testContacts(type: Test) {
     useTestNG {
