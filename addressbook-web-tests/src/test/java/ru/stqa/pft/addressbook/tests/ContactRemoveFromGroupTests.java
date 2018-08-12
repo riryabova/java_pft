@@ -16,6 +16,11 @@ public class ContactRemoveFromGroupTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirstName("test12").withLastName("test13").withAddress("test14").withMobilePhone("8888888").withEmail("mailTo@gmail.com"));
     }
+
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
   }
 
   @Test

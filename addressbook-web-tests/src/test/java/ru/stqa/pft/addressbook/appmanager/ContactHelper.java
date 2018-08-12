@@ -128,8 +128,6 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
-
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -181,6 +179,7 @@ public class ContactHelper extends HelperBase {
     return contactCache;
 
   }
+
   public ContactData infoFromEditForm(ContactData contact) {
 
     initContactModification(contact.getId());
@@ -196,6 +195,18 @@ public class ContactHelper extends HelperBase {
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
+  }
+
+  public ContactData getRandomContact(Set beforeContacts) {
+    ContactData contact = (ContactData) beforeContacts.iterator().next();
+    return contact;
+  }
+
+  public void addContactToGroup(int contactID, int GroupID) {
+    selectContactById(contactID);
+    wd.findElement(By.name("to_group")).click();
+    wd.findElement(By.xpath("//*[@id=\"content\"]//div[4]//*[@value='" + GroupID + "']")).click();
+    wd.findElement(By.xpath("//*[@id=\"content\"]/form[2]/div[4]/input")).click();
   }
 
 }
