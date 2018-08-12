@@ -68,21 +68,21 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public void addToGroup(ContactData contact, String newGroupName) {
-    selectContactById(contact.getId());
-    Select nGroup = new Select(wd.findElement(By.name("to_group")));
-    nGroup.selectByVisibleText(newGroupName);
-    wd.findElement(By.name("add")).click();
-//    contactCache = null;
-  }
-
-  public void RemoveFromGroup(ContactData contact, String newGroupName) {
-    selectContactById(contact.getId());
-    Select nGroup = new Select(wd.findElement(By.name("group")));
-    nGroup.selectByVisibleText(newGroupName);
-    wd.findElement(By.name("remove")).click();
-//    contactCache = null;
-  }
+//  public void addToGroup(ContactData contact, String newGroupName) {
+//    selectContactById(contact.getId());
+//    Select nGroup = new Select(wd.findElement(By.name("to_group")));
+//    nGroup.selectByVisibleText(newGroupName);
+//    wd.findElement(By.name("add")).click();
+////    contactCache = null;
+//  }
+//
+//  public void RemoveFromGroup(ContactData contact, String newGroupName) {
+//    selectContactById(contact.getId());
+//    Select nGroup = new Select(wd.findElement(By.name("group")));
+//    nGroup.selectByVisibleText(newGroupName);
+//    wd.findElement(By.name("remove")).click();
+////    contactCache = null;
+//  }
 
 
   public void selectContact(int index) {
@@ -207,6 +207,13 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("to_group")).click();
     wd.findElement(By.xpath("//*[@id=\"content\"]//div[4]//*[@value='" + GroupID + "']")).click();
     wd.findElement(By.xpath("//*[@id=\"content\"]/form[2]/div[4]/input")).click();
+  }
+
+  public void removeContactFromGroup(int contactID, int GroupID) {
+    wd.findElement(By.xpath(".//*[@id=\"right\"]/select")).click();
+    wd.findElement(By.xpath(".//*[@id=\"right\"]/select//*[@value='" + GroupID + "']")).click();
+    selectContactById(contactID);
+    wd.findElement(By.name("remove")).click();
   }
 
 }

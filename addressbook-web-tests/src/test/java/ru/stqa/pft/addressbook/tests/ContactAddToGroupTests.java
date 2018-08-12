@@ -44,15 +44,15 @@ public class ContactAddToGroupTests extends TestBase {
     app.goTo().homePage();
     app.contact().addContactToGroup(contactForAddToGroup.getId(), freeGroup.getId());
 
-    Contacts allContactsAfterAddToGroup = app.db().contacts();
+    Contacts afterContacts = app.db().contacts();
 
-    ContactData modifiedContact = getModifiedContact(allContactsAfterAddToGroup, contactForAddToGroup);
+    ContactData modifiedContact = getModifiedContact(afterContacts, contactForAddToGroup);
     //группы контакта после добавления в свободную группу
     Groups afterAddContactToGroup = modifiedContact.getGroups();
 
-
-    Assert.assertEquals(beforeAddContactToGroup.size()+1, afterAddContactToGroup.size());
-    Assert.assertEquals(beforeAddContactToGroup,afterAddContactToGroup.without(freeGroup));
+//Кроме проверки размера списков, надо проверять изменившиеся списки групп и контактов.
+    Assert.assertEquals(beforeAddContactToGroup.size() + 1, afterAddContactToGroup.size());
+    Assert.assertEquals(beforeAddContactToGroup, afterAddContactToGroup.without(freeGroup));
   }
 
 
@@ -68,21 +68,19 @@ public class ContactAddToGroupTests extends TestBase {
     Groups groups = app.db().groups();
 
 //    GroupData freeGroup="";
-    GroupData freeGroup=null;
+    GroupData freeGroup = null;
     for (GroupData group : groups) {
-      if(group.getContacts().contains(contactForAddToGroup)){
-      }else {
+      if (group.getContacts().contains(contactForAddToGroup)) {
+      } else {
         freeGroup = group;
       }
     }
     return freeGroup;
   }
 
-  private ContactData getModifiedContact(Contacts allContactsAfterAddToGroup, ContactData contactForAddToGroup) {
+  private ContactData getModifiedContact(Contacts afterContacts, ContactData contactForAddToGroup) {
     ContactData modifiedContact = null;
-    for (ContactData contact : allContactsAfterAddToGroup) {
-//      ContactData  modifiedContact = null;
-
+    for (ContactData contact : afterContacts) {
       if (contact.equals(contactForAddToGroup)) {
         modifiedContact = contact;
       }
